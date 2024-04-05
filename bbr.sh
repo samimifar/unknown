@@ -14,7 +14,7 @@ else
     echo "Failed to check the system OS, please contact the author!" >&2
     exit 1
 fi
-echo -e "The OS release is:${yellow} $release ${plain}"
+echo -e "The OS release is:${yellow} $release! ${plain}"
 
 if grep -q "net.core.default_qdisc=fq" /etc/sysctl.conf && grep -q "net.ipv4.tcp_congestion_control=bbr" /etc/sysctl.conf; then
         echo -e "${yellow}BBR${plain} is already ${green}enabled!${plain}"
