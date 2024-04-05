@@ -11,13 +11,13 @@ elif [[ -f /usr/lib/os-release ]]; then
     source /usr/lib/os-release
     release=$ID
 else
-    echo "Failed to check the system OS, please contact the author!" >&2
+    echo "${red}Failed to detect OS!${plain}" >&2
     exit 1
 fi
-echo -e "The OS release is:${yellow} $release"
+echo -e "Detected OS:${yellow} [$release]${plain}"
 
 if grep -q "net.core.default_qdisc=fq" /etc/sysctl.conf && grep -q "net.ipv4.tcp_congestion_control=bbr" /etc/sysctl.conf; then
-        echo -e "${yellow}BBR${plain} is already ${green}enabled!${plain}"
+        echo -e "${yellow}[BBR]${plain} is already ${green}[enabled]${plain} on this machine!"
         exit 0
 fi
 
@@ -36,7 +36,7 @@ case "${release}" in
         pacman -Sy --noconfirm ca-certificates > /dev/null 2>&1 &
         ;;
     *)
-        echo -e "${red}Unsupported operating system. Please check the script and install the necessary packages manually.${plain}\n"
+        echo -e "${red}Unsupported OS!${plain}\n"
         exit 1
         ;;
     esac
@@ -50,7 +50,7 @@ case "${release}" in
     wait $!
     # Verify that BBR is enabled
     if [[ $(sysctl net.ipv4.tcp_congestion_control | awk '{print $3}') == "bbr" ]]; then
-        echo -e "${green}BBR has been enabled successfully.${plain}"
+        echo -e "${green}[BBR] has been enabled successfully!${plain}"
     else
-        echo -e "${red}Failed to enable BBR. Please check your system configuration.${plain}"
+        echo -e "${red}Failed to enable [BBR]!${plain}"
     fi
