@@ -1,5 +1,5 @@
 sudo apt install unzip
-sudoi mkdir -p /var/lib/marzban/xray-core
+sudo mkdir -p /var/lib/marzban/xray-core
 cd /var/lib/marzban/xray-core
 wget https://github.com/XTLS/Xray-core/releases/download/v1.8.8/Xray-linux-64.zip
 unzip Xray-linux-64.zip
