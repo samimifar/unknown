@@ -5,7 +5,7 @@ wget https://github.com/XTLS/Xray-core/releases/download/v1.8.8/Xray-linux-64.zi
 unzip Xray-linux-64.zip
 rm Xray-linux-64.zip
 sudo mkdir -p /var/lib/marzban-node
-sudo nano /var/lib/marzban-node/ssl_client_cert.pem
+sudo nano /var/lib/marzban-node/ssl_client_cert.pem --noread
 sudo ufw disable
 sudo curl -fsSL https://get.docker.com | sh
 cd
