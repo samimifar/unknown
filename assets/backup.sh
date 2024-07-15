@@ -4,7 +4,8 @@ read -p "Enter your Telegram bot token: " bot_token
 read -p "Enter your Telegram chat ID: " chat_id
 read -p "Enter your panel name: " panel_name
 server_ip=$(curl -s http://whatismyip.akamai.com/)
-backup_script="backup_script.sh"
+mkdir -p /opt/samimifar
+backup_script="/opt/samimifar/backup.sh"
 cat <<EOF > $backup_script
 #!/bin/bash
 
@@ -34,8 +35,8 @@ if [ -z "\$conf_files" ]; then
 else
     cp \$conf_files "\$temp_dir/"
 fi
-db_path="\$directory/db/wgdashboard.db"
-backup_db_path="\$directory/db/backup_wgdashboard.db"
+db_path="\$directory/src/db/wgdashboard.db"
+backup_db_path="\$directory/src/db/backup_wgdashboard.db"
 if [ -f "\$db_path" ]; then
     sqlite3 "\$db_path" ".dump venusdb" > "\$temp_dir/dump.sql"
     sqlite3 "\$backup_db_path" < "\$temp_dir/dump.sql"
@@ -52,6 +53,7 @@ curl -s -X POST https://api.telegram.org/bot\$bot_token/sendDocument \
     -F chat_id=\$chat_id \
     -F document=@\$zip_file \
     -F caption="Panel: \$panel_name\nIP: \$server_ip" 2>/dev/null
+rm "\$zip_file"
 EOF
 chmod +x $backup_script
 (crontab -l 2>/dev/null; echo "0 * * * * /bin/bash $(pwd)/$backup_script") | crontab -
