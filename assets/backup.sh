@@ -49,7 +49,7 @@ fi
 zip_file="\${panel_name}.zip"
 zip -r "\$zip_file" "\$temp_dir"
 rm -rf "\$temp_dir"
-curl https://api.telegram.org/bot$bot_token/sendDocument -F parse_mode="HTML" -F chat_id=$chat_id -F document=@$zip_file -F caption="💠 <b>Panel: ${panel_name} ( <code>${server_ip}</code> )</b>"
+curl https://api.telegram.org/bot$bot_token/sendDocument -F parse_mode="HTML" -F chat_id=$chat_id -F document=@\$zip_file -F caption="💠 <b>Panel: ${panel_name} ( <code>${server_ip}</code> )</b>"
 rm "\$zip_file"
 EOF
 chmod +x $backup_script
