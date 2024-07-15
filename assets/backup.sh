@@ -1,5 +1,6 @@
 #!/bin/bash
 
+clear
 read -p "Enter your Telegram bot token: " bot_token
 read -p "Enter your Telegram chat ID: " chat_id
 read -p "Enter your panel name: " panel_name
@@ -48,11 +49,7 @@ fi
 zip_file="\${panel_name}.zip"
 zip -r "\$zip_file" "\$temp_dir"
 rm -rf "\$temp_dir"
-caption="Panel: \$panel_name\nIP: \$server_ip"
-curl -s -X POST https://api.telegram.org/bot\$bot_token/sendDocument \
-    -F chat_id=\$chat_id \
-    -F document=@\$zip_file \
-    -F caption="Panel: \$panel_name\nIP: \$server_ip" 2>/dev/null
+curl https://api.telegram.org/bot$bot_token/sendDocument -F parse_mode="HTML" -F chat_id=$chat_id -F document=@$zip_file -F caption="💠 <b>Panel: ${panel_name} ( <code>${server_ip}</code> )</b>"
 rm "\$zip_file"
 EOF
 chmod +x $backup_script
