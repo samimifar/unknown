@@ -1,6 +1,8 @@
 #!/bin/bash
 
 clear
+apt install zip sqlite3 -y
+clear
 read -p "Enter your Telegram bot token: " bot_token
 read -p "Enter your Telegram chat ID: " chat_id
 read -p "Enter your panel name: " panel_name
@@ -39,8 +41,8 @@ fi
 db_path="\$directory/src/db/wgdashboard.db"
 backup_db_path="\$directory/src/db/backup_wgdashboard.db"
 if [ -f "\$db_path" ]; then
-    sqlite3 "\$db_path" ".dump venusdb" > "\$temp_dir/dump.sql"
-    sqlite3 "\$backup_db_path" < "\$temp_dir/dump.sql"
+    sqlite3 "\$db_path" ".dump venus" > "\$temp_dir/backup.sql"
+    sqlite3 "\$backup_db_path" < "\$temp_dir/backup.sql"
     cp "\$backup_db_path" "\$temp_dir/"
 else
     echo "Database file \$db_path not found."
