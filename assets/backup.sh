@@ -55,5 +55,5 @@ curl https://api.telegram.org/bot$bot_token/sendDocument -F parse_mode="HTML" -F
 rm "\$zip_file"
 EOF
 chmod +x $backup_script
-(crontab -l 2>/dev/null; echo "0 * * * * /bin/bash $(pwd)/$backup_script") | crontab -
+(crontab -l 2>/dev/null; echo "0 * * * * /bin/bash $backup_script") | crontab -
 echo "Installer completed. The backup script has been created and scheduled to run every hour."
