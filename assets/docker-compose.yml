@@ -4,6 +4,7 @@ services:
     image: gozargah/marzban-node:latest
     restart: always
     network_mode: host
+    privileged: true
 
     # env_file: .env
     environment:
