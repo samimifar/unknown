@@ -1,7 +1,7 @@
 sudo apt install unzip
 sudo mkdir -p /var/lib/marzban/xray-core
 cd /var/lib/marzban/xray-core
-wget https://github.com/XTLS/Xray-core/releases/download/v1.8.8/Xray-linux-64.zip
+https://github.com/XTLS/Xray-core/releases/download/v1.8.24/Xray-linux-64.zip
 unzip Xray-linux-64.zip
 rm Xray-linux-64.zip
 sudo mkdir -p /var/lib/marzban-node
