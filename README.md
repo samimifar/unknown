@@ -3,8 +3,8 @@
 ```
  bash <(curl -s 'https://raw.githubusercontent.com/samimifar/unknown/main/bbr.sh' --ipv4)
 ```
-## Marzban-Node
-- Installing `Marzban-node` (with `Xray-core v1.8.24`)
+## Ubuntu VPS optimizer
+- Ensure that you are using this script only for Ubuntu servers!!!
 ```
- bash <(curl -s 'https://raw.githubusercontent.com/samimifar/unknown/main/marzban_node.sh' --ipv4)
+ bash <(curl -s 'https://raw.githubusercontent.com/samimifar/unknown/main/x.sh' --ipv4)
 ```
